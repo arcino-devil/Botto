@@ -1,0 +1,10 @@
+pyrogram
+telethon==1.16.4
+python-telegram-bot==12.8
+aiohttp>=2.2.5
+jikanpy
+telegraph
+pytube
+python-arq
+aiofiles
+requests
