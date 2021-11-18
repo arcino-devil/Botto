@@ -27,6 +27,7 @@ def command(commands: Union[str, List[str]]):
     def _start(client, message):
         client.send_message(
               message.chat.id,
-              text=st.
+              text=st.START_MSG,
+              parse_mode=Markdown
 
 
