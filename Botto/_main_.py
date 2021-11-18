@@ -38,4 +38,14 @@ def command(commands: Union[str, List[str]]):
 def h_for_func(update, context):
     query = update.callback_query
     query.answer()
-
+    match = query.data.split("_")[1]
+    markup = InlineKeyboardMarkup(
+        [[InlineKeyboardButton(text="Go back", callback_data="back_btn_help"),
+          InlineKeyboardButton(text="about", callback_data="about")]]
+    )
+    if match == "req":
+        query.message.edit_caption(caption=st.REQ_MSG, reply_markup=markup)
+    elif match == "resp":
+        query.message.edit_caption(caption=st.QMSG, reply_markup=markup)
+    elif match == "bl":
+        query.message.edit_caption(caption=st.BL_MSG, reply_markup=markup)
