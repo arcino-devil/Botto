@@ -28,6 +28,14 @@ def command(commands: Union[str, List[str]]):
         client.send_message(
               message.chat.id,
               text=st.START_MSG,
-              parse_mode=Markdown
+              reply_markup=InlineKeyboardMarkup(
+                     [[InlineKeyboardButton (text="Request", callback_data="h_req"),
+                       InlineKeyboardButton (text="Query", callback_data="h_resp")],
+                      [InlineKeyboardButton (text="Broken Links", callback_data="h_bl"),
+                       InlineKeyboardButton (text="Feeling Lucky", callback_data="h_lucky")]]),
+                      )
 
+def h_for_func(update, context):
+    query = update.callback_query
+    query.answer()
 
