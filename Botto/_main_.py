@@ -7,7 +7,7 @@ from telegram.ext import (
     ConversationHandler,
     CallbackQueryHandler,
 )
-
+import os, sys, importlib
 from typing import List, Union
 from Botto.Config import COMMAND_PREFIXES, BOT_NAME
 from telegram.ext.dispatcher import run_async
@@ -23,17 +23,27 @@ tempdict = {}
 def command(commands: Union[str, List[str]]):
     return filters.command(commands, COMMAND_PREFIXES)
 
-@Client.on_message(command["start",f"start@{BOT_NAME}"])
-    def _start(client, message):
-        client.send_message(
-              message.chat.id,
-              text=st.START_MSG,
-              reply_markup=InlineKeyboardMarkup(
+Class Starter:
+    def _init_(self, name):
+              self.photo= ""
+              self.text=st.START_MSG.format(name)
+              self.reply_markup=InlineKeyboardMarkup(
                      [[InlineKeyboardButton (text="Request", callback_data="h_req"),
                        InlineKeyboardButton (text="Query", callback_data="h_resp")],
                       [InlineKeyboardButton (text="Broken Links", callback_data="h_bl"),
                        InlineKeyboardButton (text="Feeling Lucky", callback_data="h_lucky")]]),
                       )
+
+@run_async 
+def start(update, context):
+    if update.effective_chat.type == "private":
+        stuff = Starter(update.effective_user.first_name)
+        return update.effective_message.reply_photo(
+            photo=stuff.photo, caption=stuff.text, reply_markup=stuff.reply_markup
+        )
+
+    update.effective_message.reply_text(st.START_STRING_GRP)
+
 
 def h_for_func(update, context):
     query = update.callback_query
@@ -41,10 +51,13 @@ def h_for_func(update, context):
     match = query.data.split("_")[1]
     markup = InlineKeyboardMarkup(
         [[InlineKeyboardButton(text="Go back", callback_data="back_btn_help"),
-          InlineKeyboardButton(text="about", callback_data="about")]]
+          InlineKeyboardButton(text="Request", switch_inline_query_current_chat="<req> ")]]
     )
     if match == "req":
-        query.message.edit_caption(caption=st.REQ_MSG, reply_markup=markup)
+        query.message.edit_caption(caption=st.REQ_MSG, reply_markup= InlineKeyboardMarkup(
+        [[InlineKeyboardButton(text="Go back", callback_data="back_btn_help"),
+          InlineKeyboardButton(text="about", callback_data="about")]]
+    ))
     elif match == "resp":
         query.message.edit_caption(caption=st.QMSG, reply_markup=markup)
     elif match == "bl":
