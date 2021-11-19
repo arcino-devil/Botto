@@ -32,11 +32,9 @@ Class Abt:
               self.photo= ""
               self.text=st.ABT_MSG.format(name)
               self.reply_markup=InlineKeyboardMarkup(
-                     [[InlineKeyboardButton (text="Request", callback_data="h_req"),
-                       InlineKeyboardButton (text="Query", callback_data="h_resp")],
-                      [InlineKeyboardButton (text="Broken Links", callback_data="h_bl"),
-                       InlineKeyboardButton (text="Feeling Lucky", callback_data="h_lucky")]]),
-                      )
+                     [[InlineKeyboardButton (text="Meet The Dev", callback_data="h_req"),
+                       InlineKeyboardButton (text="Go Back", callback_data="back_btn_help")]]
+                        )
 
 
 @run_async 
@@ -89,5 +87,7 @@ def back_btn(update, context):
     help_funcs_handler = CallbackQueryHandler(h_for_funcs, pattern=r"h_")
     back_btn_handler = CallbackQueryHandler(back_btn, pattern=r"back_btn")
 
-
+    dispatcher.add_handler(help_funcs_handler)
+    dispatcher.add_handler(start_handler)
+    dispatcher.add_handler(back_btn_handler)
 
