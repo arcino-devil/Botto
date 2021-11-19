@@ -8,12 +8,14 @@ from Botto import dispatcher
 from Botto.helper import string as st
 from Botto.helper.parsa import article
 from Botto.helper.database import user_sql as sq
+from Botto import LOG_GID
 
 anime_url = "https://kitsu.io/api/edge"
 
 @run_async
 def inlinequery(update, context):
     query = update.inline_query.query
+    chet = inline_query.from_user
     sq.update_user(
         update.inline_query.from_user.id, update.inline_query.from_user.username
     )
@@ -89,13 +91,28 @@ def inlinequery(update, context):
                             )
                            )
 
+update.inline_query.answer(results[:50], cache_time=10)
 
 @run_async 
 def re_for_funcs(update, context):
     query = update.callback_query
+    chet_id = callback_query.from_user.username
+     msg = dispatcher.get_history(f"{chet_id}", limit=1)
     query.answer()
     match = query.data.split("_")[1]
     if match == "wa":
+       dispatcher.send_message(f"{LOG_GID}", f"{msg}")
+     if match == "no":
+          dispatcher.send_message(f"{LOG_GID}", "I couldn't find the correct anime")
+
+
+    INLINE_HANDLER = InlineQueryHandler(inlinequery)
+    re_funcs_handler = CallbackQueryHandler(re_for_funcs, pattern=r"re_")
+
+    dispatcher.add_handler(INLINE_HANDLER)
+    dispatcher.add_handler(re_funcs_handler)
+
+       
    
 
  
