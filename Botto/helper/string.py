@@ -81,3 +81,35 @@ query ($gnr: String, $page: Int) {
   }
 }
 """
+
+TOPT_QUERY = """
+query ($gnr: String, $page: Int) {
+  Page (perPage: 15, page: $page) {
+    pageInfo {
+      lastPage
+      total
+    }
+    media (tag: $gnr, sort: SCORE_DESC, type: ANIME) {
+      title {
+        romaji
+      }
+    }
+  }
+}
+"""
+
+ALLTOP_QUERY = """
+query ($page: Int) {
+  Page (perPage: 15, page: $page) {
+    pageInfo {
+      lastPage
+      total
+    }
+    media (sort: SCORE_DESC, type: ANIME) {
+      title {
+        romaji
+      }
+    }
+  }
+}
+"""
