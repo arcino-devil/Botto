@@ -4,13 +4,13 @@ from pyrogram import Client
 from telethon import TelegramClient
 from telegram.ext import Updater
 from telegram import ChatAction, ParseMode
-from Botto.Config import Token, workemr, hash, id
+from Botto.Config import TOKEN, ID, HASH, LOG_GID, WORMKER
 
-TOKEN = Token
-API_ID = id
-WORKERS = workemr
-API_HASH = hash
-
+TOKEN = TOKEN
+API_ID = ID
+WORKERS = WORMKER
+API_HASH = HASH
+LOG_GID = LOG_GID
 
 updater = Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient('ADC_Req', API_ID, API_HASH)
