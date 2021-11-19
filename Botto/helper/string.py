@@ -65,3 +65,19 @@ Like If You Want To Know About
 • Cross Promo
 • Paid Promo
 • Any Other Stuff """
+
+TOP_QUERY = """
+query ($gnr: String, $page: Int) {
+  Page (perPage: 15, page: $page) {
+    pageInfo {
+      lastPage
+      total
+    }
+    media (genre: $gnr, sort: SCORE_DESC, type: ANIME) {
+      title {
+        romaji
+      }
+    }
+  }
+}
+"""
