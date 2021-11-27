@@ -15,7 +15,7 @@ from Botto import dispatcher, updater
 from Botto.helper import string as st
 from Botto.func import ALL_FUNCS
 
-from func_name in ALL_FUNCS:
+for func_name in ALL_FUNCS:
        imported_module = importlib.import_module("Botto.func." + func_name)
 
 pict = "https://telegra.ph/file/20dcc3941fec58226caa7.jpg"     
