@@ -116,4 +116,5 @@ query ($page: Int) {
 ABT_MSG = """
 Hey there {}, this bot was made for Anime Hub Community by Psychopomp.
 This bot uses Kitsu Api to find your anime.
-Below is the contact of developer"""
+Below is the contact of developer
+"""
