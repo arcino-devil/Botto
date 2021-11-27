@@ -22,7 +22,7 @@ pict = "https://telegra.ph/file/20dcc3941fec58226caa7.jpg"
 
 
 
-Class Starter:
+ Class Starter :
     def _init_(self, name):
               self.photo= ""
               self.text=st.START_MSG.format(name)
@@ -33,7 +33,7 @@ Class Starter:
                        InlineKeyboardButton (text="Feeling Lucky", callback_data="h_lucky")]]),
                       )
 
-Class Abt:
+ Class Abt :
     def _init_(self, name):
               self.photo= ""
               self.text=st.ABT_MSG.format(name)
