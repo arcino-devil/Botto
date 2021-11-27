@@ -18,7 +18,7 @@ from Botto.func import ALL_FUNCS
 from func_name in ALL_FUNCS:
        imported_module = importlib.import_module("Botto.func." + func_name)
 
-       
+pict = "https://telegra.ph/file/20dcc3941fec58226caa7.jpg"     
 
 
 
@@ -90,7 +90,7 @@ def back_btn(update, context):
 def main():
     
     if LOG_GID is not None and isinstance(LOG_GID, str):
-            dispatcher.send_photo(f"@{LOG_GID}", f"{photo}",  caption="Im alive master")
+            dispatcher.send_photo(f"@{LOG_GID}", f"{pict}",  caption="Im alive master")
 
     start_handler = CommandHandler("start", start)
     help_funcs_handler = CallbackQueryHandler(h_for_funcs, pattern=r"h_")
