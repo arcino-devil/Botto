@@ -11,7 +11,7 @@ import os, sys, importlib
 from telegram.ext.dispatcher import run_async
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton, ForceReply
 from pyrogram import Client
-from Botto import dispatcher
+from Botto import dispatcher, updater
 from Botto.helper import string as st
 from Botto.func import ALL_FUNCS
 
@@ -97,10 +97,10 @@ def back_btn(update, context):
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(back_btn_handler)
 
-updater.start_polling(timeout=15, read_latency=4)
+    updater.start_polling(timeout=15, read_latency=4)
     updater.idle()
 
 
-if __name__ == "__main__":
+    if __name__ == "__main__":
     main()
 
