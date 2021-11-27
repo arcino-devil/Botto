@@ -87,7 +87,10 @@ def back_btn(update, context):
     stuff = Abt(update.effective_user.first_name)
     query.message.edit_caption(caption=stuff.text, reply markup=stuff.reply_markup)
              
-
+def main():
+    
+    if LOG_GID is not None and isinstance(LOG_GID, str):
+            dispatcher.send_photo(f"@{LOG_GID}", f"{photo}",  caption="Im alive master")
 
     start_handler = CommandHandler("start", start)
     help_funcs_handler = CallbackQueryHandler(h_for_funcs, pattern=r"h_")
