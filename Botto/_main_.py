@@ -13,6 +13,12 @@ from telegram import InlineKeyboardMarkup, InlineKeyboardButton, ForceReply
 from pyrogram import Client
 from Botto import dispatcher
 from Botto.helper import string as st
+from Botto.func import ALL_FUNCS
+
+from func_name in ALL_FUNCS:
+       imported_module = importlib.import_module("Botto.func." + func_name)
+
+       
 
 
 
@@ -90,4 +96,11 @@ def back_btn(update, context):
     dispatcher.add_handler(help_funcs_handler)
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(back_btn_handler)
+
+updater.start_polling(timeout=15, read_latency=4)
+    updater.idle()
+
+
+if __name__ == "__main__":
+    main()
 
